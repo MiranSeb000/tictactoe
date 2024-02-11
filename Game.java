@@ -61,32 +61,37 @@ public class Game {
             board.printBoard();
             System.out.println("Player 1's turn...");
             System.out.print("Enter row [0 to 2]: ");
-            row = scan.nextInt();
+            row = getMoveSpace(scan);
             System.out.print("Enter col [0 to 2]: ");
-            col = scan.nextInt();
+            col = getMoveSpace(scan);
             players.get(0).makeTurn(row, col, board);
             System.out.println(board.evaluate());
+
+            if(board.checkWin()) {
+                System.out.println("Player 1 wins!");
+                break;
+            }
 
             // player 2
             System.out.println(border);
             board.printBoard();
             System.out.println("Player 2's turn...");
             System.out.print("Enter row [0 to 2]: ");
-            row = scan.nextInt();
+            row = getMoveSpace(scan);
             System.out.print("Enter col [0 to 2]: ");
-            col = scan.nextInt();
+            col = getMoveSpace(scan);
             players.get(1).makeTurn(row, col, board);
             System.out.println(board.evaluate());
+
+            if(board.checkWin()) {
+                System.out.println("Player 2 wins!");
+                break;
+            }
         }
-        System.out.println(border);
-
-
-        board.printBoard();
-        System.out.print(border);
     }
 
-    public int getAIOpp(Scanner scan){
-
+    // sanitize input for getting system's opponent
+    public int getAIOpp(Scanner scan) {
         int AIOpp = 0;
         boolean invalidInput = true;
         while (invalidInput){
@@ -98,14 +103,32 @@ public class Game {
                     invalidInput = false;
                 }
                 else{
-                    System.out.println("Invalid input; enter 1 for Human or 2 for AI.");
+                    System.out.print("Invalid input; enter 1 for Human or 2 for AI: ");
                 }
             }
             catch (InputMismatchException e) {
-                System.out.println("Invalid input; enter 1 for Human or 2 for AI.");
+                System.out.print("Invalid input; enter 1 for Human or 2 for AI: ");
                 scan.next();
             }
         }
         return AIOpp;
     }
+
+    // sanitize input for move space
+    public int getMoveSpace(Scanner scan) {
+        int move = -1;
+        while (move < 0 || move > 2) {
+            if (scan.hasNextInt()) {
+                move = scan.nextInt();
+                if (move < 0 || move > 2) {
+                    System.out.print("Invalid input; enter an int from 0 to 2: ");
+                }
+            } else {
+                System.out.print("Invalid input; enter an int from 0 to 2: ");
+                scan.next(); // Consume the invalid input
+            }
+        }
+        return move;
+    }
+
 }

@@ -11,11 +11,11 @@ public class Board {
     boolean win = false;
 
     public void makeMove(Move move) {
-        board[move.col][move.row] = move.piece;
+        board[move.row][move.col] = move.piece;
     }
 
     public void unmakeMove(Move move) {
-        board[move.col][move.row] = ' ';
+        board[move.row][move.col] = ' ';
     }
 
     // prints board in readable format
@@ -58,7 +58,10 @@ public class Board {
                     Os++;
                 }
             }
-            if (Xs == 2 && Os == 0) {
+            if (Xs == 3 || Os == 3) {
+                win = true;
+                break;
+            } else if (Xs == 2 && Os == 0) {
                 X2++;
             } else if (Xs == 1 && Os == 0) {
                 X1++;
@@ -80,7 +83,10 @@ public class Board {
                     Os++;
                 }
             }
-            if (Xs == 2 && Os == 0) {
+            if (Xs == 3 || Os == 3) {
+                win = true;
+                break;
+            } else if (Xs == 2 && Os == 0) {
                 X2++;
             } else if (Xs == 1 && Os == 0) {
                 X1++;
@@ -101,7 +107,9 @@ public class Board {
                 Os++;
             }
         }
-        if (Xs == 2 && Os == 0) {
+        if (Xs == 3 || Os == 3) {
+            win = true;
+        } else if (Xs == 2 && Os == 0) {
             X2++;
         } else if (Xs == 1 && Os == 0) {
             X1++;
@@ -120,7 +128,9 @@ public class Board {
                 Os++;
             }
         }
-        if (Xs == 2 && Os == 0) {
+        if (Xs == 3 || Os == 3) {
+            win = true;
+        } else if (Xs == 2 && Os == 0) {
             X2++;
         } else if (Xs == 1 && Os == 0) {
             X1++;
