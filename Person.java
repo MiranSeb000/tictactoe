@@ -14,11 +14,27 @@ public class Person extends Player{
         System.out.println(border);
         board.printBoard();
         System.out.println("Player 1's turn...");
-        System.out.print("Enter row[0 to 2]: ");
-        row = getMoveSpace(scan);
-        System.out.print("Enter col [0 to 2]: ");
-        col = getMoveSpace(scan);
+
+        do {
+            System.out.print("Enter row[0 to 2]: ");
+            row = getMoveSpace(scan);
+            System.out.print("Enter col [0 to 2]: ");
+            col = getMoveSpace(scan);
+        } while (!checkMove(board, row, col));
+
         makeTurn(row, col, board);
+    }
+
+    public boolean checkMove(Board board, int row, int col) {
+        boolean isFree = false;
+
+        if (board.board[col][row] == ' '){
+            isFree = true;
+        } else {
+            System.out.println("\nThat space is already occupied, try again");
+        }
+
+        return isFree;
     }
  
 }
