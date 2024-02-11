@@ -11,11 +11,11 @@ public class Board {
     boolean win = false;
 
     public void makeMove(Move move) {
-        board[move.col][move.row] = move.piece;
+        board[move.row][move.col] = move.piece;
     }
 
     public void unmakeMove(Move move) {
-        board[move.col][move.row] = ' ';
+        board[move.row][move.col] = ' ';
     }
 
     // prints board in readable format

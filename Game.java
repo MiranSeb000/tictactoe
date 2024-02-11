@@ -88,11 +88,6 @@ public class Game {
                 break;
             }
         }
-        System.out.println(border);
-
-
-        board.printBoard();
-        System.out.print(border);
     }
 
     // sanitize input for getting system's opponent
