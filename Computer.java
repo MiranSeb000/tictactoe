@@ -52,4 +52,8 @@ public class Computer extends Player{
         }
         return moves;
     }
+
+    void runTurn(Board board, Scanner scan) {
+        searchAndPlay(board, 3, true);
+    }
 }
