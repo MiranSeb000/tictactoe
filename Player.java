@@ -6,6 +6,6 @@ public abstract class Player {
     }
     
     public void makeTurn(int row, int col, Board board) {
-        board.board[row][col] = piece;
+        board.board[col][row] = piece;
     }
 }

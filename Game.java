@@ -60,21 +60,23 @@ public class Game {
             System.out.println(border);
             board.printBoard();
             System.out.println("Player 1's turn...");
-            System.out.print("Enter row[0 to 2]: ");
+            System.out.print("Enter row [0 to 2]: ");
             row = scan.nextInt();
             System.out.print("Enter col [0 to 2]: ");
             col = scan.nextInt();
             players.get(0).makeTurn(row, col, board);
+            System.out.println(board.evaluate());
 
             // player 2
             System.out.println(border);
             board.printBoard();
             System.out.println("Player 2's turn...");
-            System.out.print("Enter row[0 to 2]: ");
+            System.out.print("Enter row [0 to 2]: ");
             row = scan.nextInt();
             System.out.print("Enter col [0 to 2]: ");
             col = scan.nextInt();
             players.get(1).makeTurn(row, col, board);
+            System.out.println(board.evaluate());
         }
         System.out.println(border);
 
