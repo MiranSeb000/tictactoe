@@ -87,33 +87,34 @@ public class Board {
                 } else if (board[diag][diag] == 'O') {
                     Os++;
                 }
-                if (Xs == 2 && Os == 0) {
-                    X2++;
-                } else if (Xs == 1 && Os == 0) {
-                    X1++;
-                } else if (Os == 2 && Xs == 0) {
-                    O2++;
-                } else if (Os == 1 && Xs == 0) {
-                    O1++;
-                }
+            }
+            if (Xs == 2 && Os == 0) {
+                X2++;
+            } else if (Xs == 1 && Os == 0) {
+                X1++;
+            } else if (Os == 2 && Xs == 0) {
+                O2++;
+            } else if (Os == 1 && Xs == 0) {
+                O1++;
             }
             Xs = 0;
             Os = 0;
+
             for (int diag = 0; diag < 3; diag++){
                 if(board[diag][2-diag] == 'X') {
                     Xs++;
                 } else if (board[diag][2-diag] == 'O') {
                     Os++;
                 }
-                if (Xs == 2 && Os == 0) {
-                    X2++;
-                } else if (Xs == 1 && Os == 0) {
-                    X1++;
-                } else if (Os == 2 && Xs == 0) {
-                    O2++;
-                } else if (Os == 1 && Xs == 0) {
-                    O1++;
-                }
+            }
+            if (Xs == 2 && Os == 0) {
+                X2++;
+            } else if (Xs == 1 && Os == 0) {
+                X1++;
+            } else if (Os == 2 && Xs == 0) {
+                O2++;
+            } else if (Os == 1 && Xs == 0) {
+                O1++;
             }
         }
 
