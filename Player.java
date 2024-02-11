@@ -6,6 +6,7 @@ public abstract class Player {
     }
     
     public void makeTurn(int row, int col, Board board) {
-        board.board[col][row] = piece;
+        Move move = new Move(row, col, this.piece);
+        board.makeMove(move);
     }
 }
