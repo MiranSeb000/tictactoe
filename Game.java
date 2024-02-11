@@ -10,7 +10,8 @@ import java.util.*;
 public class Game {
     public static final String border = "\n=================================================\n";
     private List<Player> players;
-    private Board board;
+    private Player currentPlayer;
+    public static Board board;
 
     public void run() {
         Scanner scan = new Scanner(System.in);
