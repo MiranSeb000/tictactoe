@@ -62,6 +62,7 @@ public class Game {
         while(!board.checkWin()) { // while no winner
             if (turn % 2 == 0) player1.runTurn(board, scan);
             else player2.runTurn(board, scan);
+            board.evaluate();
             turn++;
         }
         
