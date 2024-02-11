@@ -11,17 +11,9 @@ import java.util.*;
 
 public class Game {
     public static final String border = "\n=================================================\n";
-    //private List<Player> players;
-    private Player currentPlayer;
     private Board board;
     char player1Piece = 'X';
     char player2Piece = 'O';
-
-
-    private void swapPlayer(Player currentPlayer, Player playerA, Player playerB){
-        if (currentPlayer.piece == playerA.piece) currentPlayer = playerB;
-        else currentPlayer = playerA;
-    }
 
     public void run() {
         Scanner scan = new Scanner(System.in);
@@ -64,12 +56,13 @@ public class Game {
         //        players.add(computer);
         //    }
         //}
-        currentPlayer = player2;
         
         // game loop
+        int turn = 0;
         while(!board.checkWin()) { // while no winner
-            currentPlayer.runTurn(board, scan);
-            swapPlayer(currentPlayer, player1, player2);
+            if (turn % 2 == 0) player1.runTurn(board, scan);
+            else player2.runTurn(board, scan);
+            turn++;
         }
         
         System.out.println(border);
