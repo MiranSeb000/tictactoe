@@ -9,13 +9,24 @@ public class Board {
     int player1;
     int player2;
     boolean win = false;
+    char firstPiece = 'X';
+    char secondPiece = 'O';
+    char pieceToMove;
+
+    public Board(){
+        pieceToMove = firstPiece;
+    }
 
     public void makeMove(Move move) {
-        board[move.row][move.col] = move.piece;
+        board[move.row][move.col] = pieceToMove;
+        if (pieceToMove == firstPiece) pieceToMove = secondPiece;
+        else pieceToMove = firstPiece;
     }
 
     public void unmakeMove(Move move) {
         board[move.row][move.col] = ' ';
+        if (pieceToMove == firstPiece) pieceToMove = secondPiece;
+        else pieceToMove = firstPiece;
     }
 
     // prints board in readable format
@@ -34,7 +45,6 @@ public class Board {
 
     // returns true if there is a winner in current state
     public boolean checkWin() {
-
         return win;
     }
 

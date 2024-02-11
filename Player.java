@@ -9,11 +9,6 @@ public abstract class Player {
 
     //abstract void runTurn();
     abstract void runTurn(Board board, Scanner scan);
-    
-    public void makeTurn(int row, int col, Board board) {
-        Move move = new Move(row, col, this.piece);
-        board.makeMove(move);
-    }
 
     // sanitize input for move space
     public int getMoveSpace(Scanner scan) {

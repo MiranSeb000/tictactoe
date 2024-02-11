@@ -9,7 +9,6 @@ public class Person extends Player{
     }
 
     public void runTurn(Board board, Scanner scan){
-        System.out.print("hi");
         int row, col;
         System.out.println(border);
         board.printBoard();
@@ -22,7 +21,8 @@ public class Person extends Player{
             col = getMoveSpace(scan);
         } while (!checkMove(board, row, col));
 
-        makeTurn(row, col, board);
+        Move move = new Move(row, col);
+        board.makeMove(move);
     }
 
     public boolean checkMove(Board board, int row, int col) {

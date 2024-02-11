@@ -28,7 +28,7 @@ public class Game {
             // AI's Opponent goes first
             AIChar = 'O';
             AIOppChar = 'X';
-        }
+        } 
 
         // create players
         Player player1 = new Person(player1Piece);
