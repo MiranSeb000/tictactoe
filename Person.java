@@ -4,9 +4,9 @@ public class Person extends Player{
 
     public static final String border = "\n=================================================\n";
 
-    public Person(char piece){
-        super(piece);
-    }
+    //public Person(char piece){
+    //    super(piece);
+    //}
 
     public void runTurn(Board board, Scanner scan){
         int row, col;

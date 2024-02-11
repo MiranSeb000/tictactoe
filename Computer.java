@@ -2,9 +2,9 @@ import java.util.*;
 
 public class Computer extends Player{
 
-    public Computer(char piece){
-        super(piece);
-    }
+    //public Computer(char piece){
+    //    super(piece);
+    //}
 
     public int searchAndPlay(Board board, int depth, Boolean isRoot){
         

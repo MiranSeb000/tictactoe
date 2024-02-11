@@ -1,11 +1,11 @@
 import java.util.Scanner;
 
 public abstract class Player {
-    char piece;
+    //char piece;
 
-    public Player(char piece){
-        this.piece = piece;
-    }
+    //public Player(char piece){
+    //    this.piece = piece;
+    //}
 
     //abstract void runTurn();
     abstract void runTurn(Board board, Scanner scan);

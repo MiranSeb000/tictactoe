@@ -12,50 +12,26 @@ import java.util.*;
 public class Game {
     public static final String border = "\n=================================================\n";
     private Board board;
-    char player1Piece = 'X';
-    char player2Piece = 'O';
+    Player player1, player2;
 
     public void run() {
         Scanner scan = new Scanner(System.in);
         board = new Board();
         System.out.print(border);
-        
-        // randomly decide who goes first
-        // Assume AI goes first
-        char AIChar = 'X';
-        char AIOppChar = 'O';
-        if (Math.random()<0.5){
-            // AI's Opponent goes first
-            AIChar = 'O';
-            AIOppChar = 'X';
-        } 
 
         // create players
-        Player player1 = new Person(player1Piece);
-        Player player2 = new Person(player2Piece);
-        //players = new ArrayList<>();
-        //Computer system = new Computer(AIChar);
-        //players.add(system);
-        // get AI's opponent
-        //int AIOpp = getAIOpp(scan);
-        //if (AIOpp == 1) {
-        //    // make Human player
-        //    Person person = new Person(AIOppChar);
-        //    if (person.piece == 'X'){
-        //        players.add(0, person);
-        //    } else {
-        //        players.add(person);
-        //    }
-        //    players.add(person);
-        //} if (AIOpp == 2) {
-        //    // make AI player
-        //    Computer computer = new Computer(AIOppChar);
-        //    if (computer.piece == 'X'){
-        //        players.add(0, computer);
-        //    } else {
-        //        players.add(computer);
-        //    }
-        //}
+        if (getAIOpp(scan) == 1) {
+            player1 = new Person();
+            player2 = new Person();
+        } else {
+            if (Math.random()<0.5) {
+                player1 = new Computer();
+                player2 = new Person();
+            } else {
+                player1 = new Person();
+                player2 = new Computer();
+            }
+        }
         
         // game loop
         int turn = 0;
@@ -67,7 +43,6 @@ public class Game {
         }
         
         System.out.println(border);
-
 
         board.printBoard();
         System.out.print(border);
