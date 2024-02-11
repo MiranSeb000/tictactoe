@@ -11,7 +11,7 @@ public class Game {
     public static final String border = "\n=================================================\n";
     private List<Player> players;
     private Player currentPlayer;
-    private Board board;
+    public static Board board;
 
     public void run() {
         Scanner scan = new Scanner(System.in);
