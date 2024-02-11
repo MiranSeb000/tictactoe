@@ -7,17 +7,27 @@
 // imports
 import java.util.*;
 
+
+
 public class Game {
     public static final String border = "\n=================================================\n";
-    private List<Player> players;
+    //private List<Player> players;
     private Player currentPlayer;
-    public static Board board;
+    private Board board;
+    char player1Piece = 'X';
+    char player2Piece = 'O';
+
+
+    private void swapPlayer(Player currentPlayer, Player playerA, Player playerB){
+        if (currentPlayer.piece == playerA.piece) currentPlayer = playerB;
+        else currentPlayer = playerA;
+    }
 
     public void run() {
         Scanner scan = new Scanner(System.in);
         board = new Board();
         System.out.print(border);
-
+        
         // randomly decide who goes first
         // Assume AI goes first
         char AIChar = 'X';
@@ -29,65 +39,44 @@ public class Game {
         }
 
         // create players
-        players = new ArrayList<>();
-        Computer system = new Computer(AIChar);
-        players.add(system);
+        Player player1 = new Person(player1Piece);
+        Player player2 = new Person(player2Piece);
+        //players = new ArrayList<>();
+        //Computer system = new Computer(AIChar);
+        //players.add(system);
         // get AI's opponent
-        int AIOpp = getAIOpp(scan);
-        if (AIOpp == 1) {
-            // make Human player
-            Person person = new Person(AIOppChar);
-            if (person.piece == 'X'){
-                players.add(0, person);
-            } else {
-                players.add(person);
-            }
-            players.add(person);
-        } if (AIOpp == 2) {
-            // make AI player
-            Computer computer = new Computer(AIOppChar);
-            if (computer.piece == 'X'){
-                players.add(0, computer);
-            } else {
-                players.add(computer);
-            }
-        }
-
+        //int AIOpp = getAIOpp(scan);
+        //if (AIOpp == 1) {
+        //    // make Human player
+        //    Person person = new Person(AIOppChar);
+        //    if (person.piece == 'X'){
+        //        players.add(0, person);
+        //    } else {
+        //        players.add(person);
+        //    }
+        //    players.add(person);
+        //} if (AIOpp == 2) {
+        //    // make AI player
+        //    Computer computer = new Computer(AIOppChar);
+        //    if (computer.piece == 'X'){
+        //        players.add(0, computer);
+        //    } else {
+        //        players.add(computer);
+        //    }
+        //}
+        currentPlayer = player2;
+        
         // game loop
         while(!board.checkWin()) { // while no winner
-            int row, col;
-            // player 1
-            System.out.println(border);
-            board.printBoard();
-            System.out.println("Player 1's turn...");
-            System.out.print("Enter row [0 to 2]: ");
-            row = getMoveSpace(scan);
-            System.out.print("Enter col [0 to 2]: ");
-            col = getMoveSpace(scan);
-            players.get(0).makeTurn(row, col, board);
-            System.out.println(board.evaluate());
-
-            if(board.checkWin()) {
-                System.out.println("Player 1 wins!");
-                break;
-            }
-
-            // player 2
-            System.out.println(border);
-            board.printBoard();
-            System.out.println("Player 2's turn...");
-            System.out.print("Enter row [0 to 2]: ");
-            row = getMoveSpace(scan);
-            System.out.print("Enter col [0 to 2]: ");
-            col = getMoveSpace(scan);
-            players.get(1).makeTurn(row, col, board);
-            System.out.println(board.evaluate());
-
-            if(board.checkWin()) {
-                System.out.println("Player 2 wins!");
-                break;
-            }
+            currentPlayer.runTurn(board, scan);
+            swapPlayer(currentPlayer, player1, player2);
         }
+        
+        System.out.println(border);
+
+
+        board.printBoard();
+        System.out.print(border);
     }
 
     // sanitize input for getting system's opponent
