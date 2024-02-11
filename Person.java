@@ -15,9 +15,9 @@ public class Person extends Player{
         board.printBoard();
         System.out.println("Player 1's turn...");
         System.out.print("Enter row[0 to 2]: ");
-        row = scan.nextInt();
+        row = getMoveSpace(scan);
         System.out.print("Enter col [0 to 2]: ");
-        col = scan.nextInt();
+        col = getMoveSpace(scan);
         makeTurn(row, col, board);
     }
  
