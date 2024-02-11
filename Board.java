@@ -10,7 +10,14 @@ public class Board {
     int player2;
     boolean win = false;
 
-    
+    public void makeMove(Move move) {
+        board[move.col][move.row] = move.piece;
+    }
+
+    public void unmakeMove(Move move) {
+        board[move.col][move.row] = ' ';
+    }
+
     // prints board in readable format
     public void printBoard() {
         System.out.println();
