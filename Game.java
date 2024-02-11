@@ -1,27 +1,61 @@
+/*
+ * Author: Peter Hafner and Sebastian M-G
+ * Date: 10 February 2024
+ * Purpose: Game: Handles running the game
+ */
+
 // imports
 import java.util.*;
 
 public class Game {
     public static final String border = "\n=================================================\n";
+    private List<Player> players;
+    private Player currentPlayer;
+    private Board board;
 
     public void run() {
         Scanner scan = new Scanner(System.in);
-        Board board = new Board();
+        board = new Board();
         System.out.print(border);
 
-        // get AI's opponent
-        int AIOpp = getAIOpp(scan);
-        
         // randomly decide who goes first
+        // Assume AI goes first
+        char AIChar = 'X';
+        char AIOppChar = 'O';
         if (Math.random()<0.5){
-            System.out.println("AI goes first.");
-        } else {
-            System.out.println("You go first.");
+            // AI's Opponent goes first
+            AIChar = 'O';
+            AIOppChar = 'X';
         }
 
-        int row, col;
+        // create players
+        players = new ArrayList<>();
+        Computer system = new Computer(AIChar);
+        players.add(system);
+        // get AI's opponent
+        int AIOpp = getAIOpp(scan);
+        if (AIOpp == 1) {
+            // make Human player
+            Person person = new Person(AIOppChar);
+            if (person.piece == 'X'){
+                players.add(0, person);
+            } else {
+                players.add(person);
+            }
+            players.add(person);
+        } if (AIOpp == 2) {
+            // make AI player
+            Computer computer = new Computer(AIOppChar);
+            if (computer.piece == 'X'){
+                players.add(0, computer);
+            } else {
+                players.add(computer);
+            }
+        }
+
         // game loop
-        while(!board.checkWin()){
+        while(!board.checkWin()) { // while no winner
+            int row, col;
             // player 1
             System.out.println(border);
             board.printBoard();
@@ -30,6 +64,7 @@ public class Game {
             row = scan.nextInt();
             System.out.print("Enter col [0 to 2]: ");
             col = scan.nextInt();
+            players.get(0).makeTurn(row, col, board);
 
             // player 2
             System.out.println(border);
@@ -39,6 +74,7 @@ public class Game {
             row = scan.nextInt();
             System.out.print("Enter col [0 to 2]: ");
             col = scan.nextInt();
+            players.get(1).makeTurn(row, col, board);
         }
         System.out.println(border);
 
