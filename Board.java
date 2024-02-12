@@ -70,9 +70,12 @@ public class Board {
                     Os++;
                 }
             }
-            if (Xs == 3 || Os == 3) {
+            if (Xs == 3) {
                 win = true;
-                break;
+                return Integer.MAX_VALUE;
+            } else if (Os == 3) {
+                win = true;
+                return Integer.MIN_VALUE;
             } else if (Xs == 2 && Os == 0) {
                 X2++;
             } else if (Xs == 1 && Os == 0) {
@@ -95,9 +98,12 @@ public class Board {
                     Os++;
                 }
             }
-            if (Xs == 3 || Os == 3) {
+            if (Xs == 3) {
                 win = true;
-                break;
+                return Integer.MAX_VALUE;
+            } else if (Os == 3) {
+                win = true;
+                return Integer.MIN_VALUE;
             } else if (Xs == 2 && Os == 0) {
                 X2++;
             } else if (Xs == 1 && Os == 0) {
@@ -119,8 +125,12 @@ public class Board {
                 Os++;
             }
         }
-        if (Xs == 3 || Os == 3) {
+        if (Xs == 3) {
             win = true;
+            return Integer.MAX_VALUE;
+        } else if (Os == 3) {
+            win = true;
+            return Integer.MIN_VALUE;
         } else if (Xs == 2 && Os == 0) {
             X2++;
         } else if (Xs == 1 && Os == 0) {
@@ -140,8 +150,12 @@ public class Board {
                 Os++;
             }
         }
-        if (Xs == 3 || Os == 3) {
+        if (Xs == 3) {
             win = true;
+            return Integer.MAX_VALUE;
+        } else if (Os == 3) {
+            win = true;
+            return Integer.MIN_VALUE;
         } else if (Xs == 2 && Os == 0) {
             X2++;
         } else if (Xs == 1 && Os == 0) {
