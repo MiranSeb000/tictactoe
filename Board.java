@@ -69,24 +69,21 @@ public class Board {
         /* Variables used in the heuristic */
         int Xs = 0, Os = 0, evaluation = 0, tripletValue;
 
-        /* Check rows */
-        for(int row = 0; row <3; row++) {
+        /* Check rows/cols */
+        for(int i = 0; i <3; i++) {
             Xs=0; Os=0;
-            for (int col = 0; col < 3; col++) {
-                if(board[row][col] == 'X')Xs++;
-                else if (board[row][col] == 'O')Os++;
+            for (int j = 0; j < 3; j++) {
+                if(board[i][j] == 'X')Xs++;
+                else if (board[i][j] == 'O')Os++;
             }
             tripletValue = checkTriplet(Xs, Os);
             if (isWon) return tripletValue;
             evaluation += tripletValue;
-        }
 
-        /* Check cols */
-        for(int col = 0; col <3; col++) {
             Xs=0; Os=0;
-            for (int row = 0; row < 3; row++) {
-                if(board[row][col] == 'X') Xs++;
-                else if (board[row][col] == 'O') Os++;
+            for (int j = 0; j < 3; j++) {
+                if(board[j][i] == 'X')Xs++;
+                else if (board[j][i] == 'O')Os++;
             }
             tripletValue = checkTriplet(Xs, Os);
             if (isWon) return tripletValue;
