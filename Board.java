@@ -12,11 +12,10 @@ public class Board {
     private char firstPiece = 'X', secondPiece = 'O', pieceToMove = firstPiece;
     private boolean isWon = false;
 
-    /* Getters and setters */
+    /* Getters */
     public char     getSpace(int row, int col)  {return board[row][col];}
     public char     getPieceToMove()            {return pieceToMove;}
     public boolean  getIsWon()                  {return isWon;}
-    public void     setIsWon(boolean isWon)     {this.isWon = isWon;}
 
     /* Makes the given move on the board */
     public void makeMove(Move move) {
@@ -135,6 +134,7 @@ public class Board {
         else if (Os == 2 && Xs == 0) O2++;
         else if (Os == 1 && Xs == 0) O1++;
         
+        isWon = false;
         return 3*X2+X1-(3*O2+O1);
     }
 }

@@ -22,7 +22,6 @@ public class Computer implements Player {
         int eval = board.evaluate();
         if (depth == 0 || board.getIsWon()) {
             expandedNodes++;
-            board.setIsWon(false);
             return board.evaluate();
         }
 
