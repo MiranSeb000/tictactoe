@@ -26,7 +26,7 @@ public class Person implements Player{
     }
 
     // Checks to see if the given move is valid
-    public boolean checkMove(Board board, int row, int col) {
+    private boolean checkMove(Board board, int row, int col) {
         boolean isFree = false;
         if (board.getSpace(row, col) == ' '){
             isFree = true;
@@ -37,7 +37,7 @@ public class Person implements Player{
     }
 
     // Sanitize input for move space
-    public int getMoveSpace() {
+    private int getMoveSpace() {
         int move = -1;
         while (move < 0 || move > 2) {
             if (Game.scan.hasNextInt()) {
