@@ -9,6 +9,7 @@ import java.util.*;
 
 public class Person implements Player{
 
+    /* Computer variables */
     public static final String border = "\n=================================================\n";
 
     public void runTurn(Board board, Scanner scan){

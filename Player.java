@@ -1,4 +1,4 @@
-import java.util.Scanner;
+import java.util.*;
 
 /* ======================================
  * Author: Peter Hafner and Sebastian M-G

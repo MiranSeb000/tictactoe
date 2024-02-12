@@ -41,6 +41,8 @@ public class Board {
 
     /* Returns integer value of current position in form 3x_2(s)+x_1(s)-(3O_2(s)+O_1(s)) */
     public int evaluate() {
+
+        /* Variables used in the heuristic */
         int Xs = 0, X2 = 0, X1 = 0, Os = 0, O1 = 0, O2 = 0;
 
         /* Check rows */
