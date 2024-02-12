@@ -8,5 +8,5 @@ import java.util.*;
 */
 
 public interface Player {
-    public void runTurn(Board board, Scanner scan);
+    public void runTurn(Board board);
 }

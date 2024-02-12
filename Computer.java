@@ -10,7 +10,6 @@ import java.util.*;
 public class Computer implements Player {
 
     /* Computer variables */
-    public static final String border = "\n=================================================\n";
     private int expandedNodes;
 
     /* Implementation of minimax which plays the best move */
@@ -21,9 +20,9 @@ public class Computer implements Player {
 
         /* Recursive base case - met is depth is 0 or a winning move has been made in the search */
         int eval = board.evaluate();
-        if (depth == 0 || board.win) {
+        if (depth == 0 || board.getIsWon()) {
             expandedNodes++;
-            board.win = false;
+            board.setIsWon(false);
             return board.evaluate();
         }
 
@@ -39,7 +38,7 @@ public class Computer implements Player {
         /* Initialize variables to track the best moves */
         int bestEval;
         Move bestMove = null;
-        char currentPiece = board.pieceToMove;
+        char currentPiece = board.getPieceToMove();
         if (currentPiece == 'X') bestEval = Integer.MIN_VALUE;
         else bestEval = Integer.MAX_VALUE;
         
@@ -72,7 +71,7 @@ public class Computer implements Player {
         LinkedList<Move> moves = new LinkedList<Move> ();
         for (int row = 0; row < 3; row++){
             for (int col = 0; col < 3; col++){
-                if (board.board[row][col] == ' ') {
+                if (board.getSpace(row, col) == ' ') {
                     Move move = new Move(row, col);
                     moves.add(move);
                 }
@@ -82,11 +81,11 @@ public class Computer implements Player {
     }
 
     /* Run this player's turn */
-    public void runTurn(Board board, Scanner scan) {
+    public void runTurn(Board board) {
         int playerNum;
-        System.out.println(border);
+        System.out.println(Game.border);
         board.printBoard();
-        if (board.pieceToMove == 'X') playerNum = 1;
+        if (board.getPieceToMove() == 'X') playerNum = 1;
         else playerNum = 2;
         System.out.println("Player " + playerNum + "'s turn...");
         searchAndPlay(board, 3, true);

@@ -8,9 +8,15 @@
 public class Board {
 
     /* Board variables */
-    char[][] board = {{' ', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}};
-    char firstPiece = 'X', secondPiece = 'O', pieceToMove = firstPiece;
-    boolean win = false;
+    private char[][] board = {{' ', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}};
+    private char firstPiece = 'X', secondPiece = 'O', pieceToMove = firstPiece;
+    private boolean isWon = false;
+
+    /* Getters and setters */
+    public char     getSpace(int row, int col)  {return board[row][col];}
+    public char     getPieceToMove()            {return pieceToMove;}
+    public boolean  getIsWon()                  {return isWon;}
+    public void     setIsWon(boolean isWon)     {this.isWon = isWon;}
 
     /* Makes the given move on the board */
     public void makeMove(Move move) {
@@ -24,7 +30,7 @@ public class Board {
         board[move.row][move.col] = ' ';
         if (pieceToMove == firstPiece) pieceToMove = secondPiece;
         else pieceToMove = firstPiece;
-        if (win == true) win = false;
+        if (isWon == true) isWon = false;
     }
 
     /* Prints the board as it is */
@@ -56,10 +62,10 @@ public class Board {
                 }
             }
             if (Xs == 3) {
-                win = true;
+                isWon = true;
                 return Integer.MAX_VALUE;
             } else if (Os == 3) {
-                win = true;
+                isWon = true;
                 return Integer.MIN_VALUE;
             } 
             else if (Xs == 2 && Os == 0) X2++;
@@ -79,10 +85,10 @@ public class Board {
                 }
             }
             if (Xs == 3) {
-                win = true;
+                isWon = true;
                 return Integer.MAX_VALUE;
             } else if (Os == 3) {
-                win = true;
+                isWon = true;
                 return Integer.MIN_VALUE;
             }
             else if (Xs == 2 && Os == 0) X2++;
@@ -101,10 +107,10 @@ public class Board {
             }
         }
         if (Xs == 3) {
-            win = true;
+            isWon = true;
             return Integer.MAX_VALUE;
         } else if (Os == 3) {
-            win = true;
+            isWon = true;
             return Integer.MIN_VALUE;
         }
         else if (Xs == 2 && Os == 0) X2++;
@@ -118,10 +124,10 @@ public class Board {
             else if (board[diag][2-diag] == 'O') Os++;
         }
         if (Xs == 3) {
-            win = true;
+            isWon = true;
             return Integer.MAX_VALUE;
         } else if (Os == 3) {
-            win = true;
+            isWon = true;
             return Integer.MIN_VALUE;
         }
         else if (Xs == 2 && Os == 0) X2++;
