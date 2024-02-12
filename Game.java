@@ -1,25 +1,30 @@
-/*
- * Author: Peter Hafner and Sebastian M-G
- * Date: 10 February 2024
- * Purpose: Game: Handles running the game
- */
-
-// imports
 import java.util.*;
 
+/* =======================================
+ * Author: Peter Hafner and Sebastian M-G
+ * Date: 10 February 2024
+ * Purpose: Handles running the game
+ * =======================================
+*/
+
+/* class to handle the game */
 public class Game {
+
+    /* game variables */
     public static final String border = "\n=================================================\n";
     Player player1, player2;
     Board board;
     
 
+    /* runs the game until it's over */
     public void run() {
-        //Init board and scanner
+
+        /* initialize board and scanner */
         Scanner scan = new Scanner(System.in);
         board = new Board();
 
-        // create players
-        if (getAIOpp(scan) == 1) {
+        /* initialize players */
+        if (requestPlayerType(scan) == 2) {
             player1 = new Computer();
             player2 = new Computer();
         } else {
@@ -32,33 +37,34 @@ public class Game {
             }
         }
         
-        // game loop
+        /* game loop */
         int turn = 0;
-        while(!board.checkWin()) { // while no winner
+        while(!board.checkWin() && turn < 9) { // while no winner
             if (turn % 2 == 0) player1.runTurn(board, scan);
             else player2.runTurn(board, scan);
             board.evaluate();
             turn++;
         }
         
-        // the game has ended
+        /* end game */
         System.out.println(border);
         board.printBoard();
-        System.out.println("Player " + ((turn-1)%2+1) + " wins!");     
+        if (board.checkWin()) System.out.println("Player " + ((turn-1)%2+1) + " wins!");  
+        else System.out.println("It's a draw!");
         System.out.print(border);
     }
 
-    // sanitize input for getting system's opponent
-    public int getAIOpp(Scanner scan) {
-        int AIOpp = 0;
+    /* take and sanitize player type info */
+    public int requestPlayerType(Scanner scan) {
+        int playerType = 0;
         boolean invalidInput = true;
         while (invalidInput){
             System.out.println(border);
             System.out.println("Select the AIs opponent:");
             System.out.print("[1] Human\n[2] AI\n--> ");
             try {
-                AIOpp = scan.nextInt();
-                if (AIOpp == 1 || AIOpp == 2){
+                playerType = scan.nextInt();
+                if (playerType == 1 || playerType == 2){
                     invalidInput = false;
                 }
                 else{
@@ -70,6 +76,6 @@ public class Game {
                 scan.next();
             }
         }
-        return AIOpp;
+        return playerType;
     }
 }

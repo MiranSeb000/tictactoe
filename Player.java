@@ -1,6 +1,12 @@
 import java.util.Scanner;
 
-public abstract class Player {
+/* ======================================
+ * Author: Peter Hafner and Sebastian M-G
+ * Date: 10 February 2024
+ * Purpose: Interface to handle players
+ * ======================================
+*/
 
-    abstract void runTurn(Board board, Scanner scan);
+public interface Player {
+    public void runTurn(Board board, Scanner scan);
 }

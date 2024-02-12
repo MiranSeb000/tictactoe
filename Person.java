@@ -1,6 +1,13 @@
 import java.util.*;
 
-public class Person extends Player{
+/* =============================================================
+ * Author: Peter Hafner and Sebastian M-G
+ * Date: 10 February 2024
+ * Purpose: Implementation of Player interface for human players
+ * =============================================================
+*/
+
+public class Person implements Player{
 
     public static final String border = "\n=================================================\n";
 

@@ -1,8 +1,9 @@
-/*
+/* =====================================================
  * Author: Peter Hafner and Sebastian M-G
  * Date: 10 February 2024
- * Purpose: Board: Holds the board state
- */
+ * Purpose: Handle's board state, moves, and evaluations
+ * =====================================================
+*/
 
 public class Board {
     char[][] board = {{' ', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}};
