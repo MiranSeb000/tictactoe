@@ -31,9 +31,9 @@ public class Computer extends Player{
                 if (bestEval == eval && isRoot) bestMove = move;
             }
             board.unmakeMove(move);
-            if (depth == 1) System.out.println(eval);
+            //if (depth == 1) System.out.println(eval);
         }
-        if (isRoot) System.out.println(bestEval);
+        //if (isRoot) System.out.println(bestEval);
         if (isRoot) board.makeMove(bestMove);
         return bestEval;
     }
