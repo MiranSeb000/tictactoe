@@ -4,10 +4,6 @@ public class Person extends Player{
 
     public static final String border = "\n=================================================\n";
 
-    //public Person(char piece){
-    //    super(piece);
-    //}
-
     public void runTurn(Board board, Scanner scan){
         int row, col;
         System.out.println(border);
@@ -25,6 +21,7 @@ public class Person extends Player{
         board.makeMove(move);
     }
 
+    // checks to see if the given move is valid
     public boolean checkMove(Board board, int row, int col) {
         boolean isFree = false;
 
@@ -36,6 +33,22 @@ public class Person extends Player{
 
         return isFree;
     }
+
+    // sanitize input for move space
+    public int getMoveSpace(Scanner scan) {
+        int move = -1;
+        while (move < 0 || move > 2) {
+            if (scan.hasNextInt()) {
+                move = scan.nextInt();
+                if (move < 0 || move > 2) {
+                    System.out.print("Invalid input; enter an int from 0 to 2: ");
+                }
+            } else {
+                System.out.print("Invalid input; enter an int from 0 to 2: ");
+                scan.next(); // Consume the invalid input
+            }
+        }
+        return move;
+    }
  
 }
-

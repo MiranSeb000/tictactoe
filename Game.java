@@ -7,17 +7,16 @@
 // imports
 import java.util.*;
 
-
-
 public class Game {
     public static final String border = "\n=================================================\n";
-    private Board board;
     Player player1, player2;
+    Board board;
+    
 
     public void run() {
+        //Init board and scanner
         Scanner scan = new Scanner(System.in);
         board = new Board();
-        System.out.print(border);
 
         // create players
         if (getAIOpp(scan) == 1) {
@@ -42,9 +41,10 @@ public class Game {
             turn++;
         }
         
+        // the game has ended
         System.out.println(border);
-
         board.printBoard();
+        System.out.println("Player " + ((turn-1)%2+1) + " wins!");     
         System.out.print(border);
     }
 
@@ -53,6 +53,7 @@ public class Game {
         int AIOpp = 0;
         boolean invalidInput = true;
         while (invalidInput){
+            System.out.println(border);
             System.out.println("Select the AIs opponent:");
             System.out.print("[1] Human\n[2] AI\n--> ");
             try {

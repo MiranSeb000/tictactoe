@@ -2,10 +2,6 @@ import java.util.*;
 
 public class Computer extends Player{
 
-    //public Computer(char piece){
-    //    super(piece);
-    //}
-
     public int searchAndPlay(Board board, int depth, Boolean isRoot){
         
         if (depth == 0) {
@@ -18,7 +14,7 @@ public class Computer extends Player{
         }
         
         int bestEval;
-        Move bestMove;
+        Move bestMove = null;
         if (board.pieceToMove == 'X') bestEval = Integer.MIN_VALUE;
         else bestEval = Integer.MAX_VALUE;
         
@@ -27,15 +23,17 @@ public class Computer extends Player{
             int eval = searchAndPlay(board, depth - 1, false);
 
             if (board.pieceToMove == 'X'){
-                bestEval = Math.max(eval, bestEval);
+                bestEval = Math.min(eval, bestEval);
                 if (bestEval == eval && isRoot) bestMove = move;
             } 
             else {
-                bestEval = Math.min(eval, bestEval);
+                bestEval = Math.max(eval, bestEval);
                 if (bestEval == eval && isRoot) bestMove = move;
             }
             board.unmakeMove(move);
+            if (depth == 1) System.out.println(eval);
         }
+        if (isRoot) System.out.println(bestEval);
         if (isRoot) board.makeMove(bestMove);
         return bestEval;
     }

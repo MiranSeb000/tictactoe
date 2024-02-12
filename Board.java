@@ -17,28 +17,30 @@ public class Board {
         pieceToMove = firstPiece;
     }
 
-    public void makeMove(Move move) {
+    // makes the given move on the board - 0 if move is null, 1 if it isn't
+    public int makeMove(Move move) {
+        if (move == null) return 0;
         board[move.row][move.col] = pieceToMove;
         if (pieceToMove == firstPiece) pieceToMove = secondPiece;
         else pieceToMove = firstPiece;
+        return 1;
     }
 
     public void unmakeMove(Move move) {
         board[move.row][move.col] = ' ';
         if (pieceToMove == firstPiece) pieceToMove = secondPiece;
         else pieceToMove = firstPiece;
+        if (win == true) win = false;
     }
 
     // prints board in readable format
     public void printBoard() {
-        System.out.println();
         for (int row = 0; row < 3; row++){
             for (int col = 0; col < 3; col++){
                 System.out.print(" " + board[col][row] + " ");
                 if (col < 2) System.out.print("|");
                 else if (row < 2) System.out.print("\n---+---+---\n");
-                else System.out.println();
-                
+                else System.out.println('\n');
             }
         }
     }
