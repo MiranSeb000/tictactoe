@@ -7,7 +7,8 @@ import java.util.*;
  * ==========================================================
 */
 
-public class Computer implements Player{
+public class Computer implements Player {
+
     public static final String border = "\n=================================================\n";
     private int expandedNodes;
 
@@ -19,7 +20,7 @@ public class Computer implements Player{
 
         /* recursive base case - met is depth is 0 or a winning move has been made in the search */
         int eval = board.evaluate();
-        if (depth == 0 || board.checkWin()) {
+        if (depth == 0 || board.win) {
             expandedNodes++;
             board.win = false;
             return board.evaluate();

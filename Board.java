@@ -6,27 +6,20 @@
 */
 
 public class Board {
+
+    /* Board variables */
     char[][] board = {{' ', ' ', ' '},{' ', ' ', ' '},{' ', ' ', ' '}};
-    int player1;
-    int player2;
+    char firstPiece = 'X', secondPiece = 'O', pieceToMove = firstPiece;
     boolean win = false;
-    char firstPiece = 'X';
-    char secondPiece = 'O';
-    char pieceToMove;
 
-    public Board(){
-        pieceToMove = firstPiece;
-    }
-
-    // makes the given move on the board - 0 if move is null, 1 if it isn't
-    public int makeMove(Move move) {
-        if (move == null) return 0;
+    /* Makes the given move on the board */
+    public void makeMove(Move move) {
         board[move.row][move.col] = pieceToMove;
         if (pieceToMove == firstPiece) pieceToMove = secondPiece;
         else pieceToMove = firstPiece;
-        return 1;
     }
 
+    /* Unmakes the given move on the board */
     public void unmakeMove(Move move) {
         board[move.row][move.col] = ' ';
         if (pieceToMove == firstPiece) pieceToMove = secondPiece;
@@ -34,7 +27,7 @@ public class Board {
         if (win == true) win = false;
     }
 
-    // prints board in readable format
+    /* Prints the board as it is */
     public void printBoard() {
         for (int row = 0; row < 3; row++){
             for (int col = 0; col < 3; col++){
@@ -46,24 +39,13 @@ public class Board {
         }
     }
 
-    // returns true if there is a winner in current state
-    public boolean checkWin() {
-        return win;
-    }
-
-    // returns integer value of current position in form 3x_2(s)+x_1(s)-(3O_2(s)+O_1(s))
+    /* Returns integer value of current position in form 3x_2(s)+x_1(s)-(3O_2(s)+O_1(s)) */
     public int evaluate() {
-        int X2 = 0;
-        int X1 = 0;
-        int O2 = 0;
-        int O1 = 0;
-        int Xs = 0;
-        int Os = 0;
+        int Xs = 0, X2 = 0, X1 = 0, Os = 0, O1 = 0, O2 = 0;
 
-        // check rows
+        /* Check rows */
         for(int row = 0; row <3; row++) {
-            Xs=0;
-            Os=0;
+            Xs=0; Os=0;
             for (int col = 0; col < 3; col++) {
                 if(board[row][col] == 'X'){
                     Xs++;
@@ -77,21 +59,16 @@ public class Board {
             } else if (Os == 3) {
                 win = true;
                 return Integer.MIN_VALUE;
-            } else if (Xs == 2 && Os == 0) {
-                X2++;
-            } else if (Xs == 1 && Os == 0) {
-                X1++;
-            } else if (Os == 2 && Xs == 0) {
-                O2++;
-            } else if (Os == 1 && Xs == 0) {
-                O1++;
-            }
+            } 
+            else if (Xs == 2 && Os == 0) X2++;
+            else if (Xs == 1 && Os == 0) X1++;
+            else if (Os == 2 && Xs == 0) O2++;
+            else if (Os == 1 && Xs == 0) O1++;
         }
 
-        // check cols
+        /* Check cols */
         for(int col = 0; col <3; col++) {
-            Xs=0;
-            Os=0;
+            Xs=0; Os=0;
             for (int row = 0; row < 3; row++) {
                 if(board[row][col] == 'X'){
                     Xs++;
@@ -105,20 +82,15 @@ public class Board {
             } else if (Os == 3) {
                 win = true;
                 return Integer.MIN_VALUE;
-            } else if (Xs == 2 && Os == 0) {
-                X2++;
-            } else if (Xs == 1 && Os == 0) {
-                X1++;
-            } else if (Os == 2 && Xs == 0) {
-                O2++;
-            } else if (Os == 1 && Xs == 0) {
-                O1++;
             }
+            else if (Xs == 2 && Os == 0) X2++;
+            else if (Xs == 1 && Os == 0) X1++;
+            else if (Os == 2 && Xs == 0) O2++;
+            else if (Os == 1 && Xs == 0) O1++;
         }
 
-        // check diagonals
-        Xs = 0;
-        Os = 0;
+        /* Check diagonals */
+        Xs=0; Os=0;
         for (int diag = 0; diag < 3; diag++){
             if(board[diag][diag] == 'X') {
                 Xs++;
@@ -132,24 +104,16 @@ public class Board {
         } else if (Os == 3) {
             win = true;
             return Integer.MIN_VALUE;
-        } else if (Xs == 2 && Os == 0) {
-            X2++;
-        } else if (Xs == 1 && Os == 0) {
-            X1++;
-        } else if (Os == 2 && Xs == 0) {
-            O2++;
-        } else if (Os == 1 && Xs == 0) {
-            O1++;
         }
-        Xs = 0;
-        Os = 0;
-
+        else if (Xs == 2 && Os == 0) X2++;
+        else if (Xs == 1 && Os == 0) X1++;
+        else if (Os == 2 && Xs == 0) O2++;
+        else if (Os == 1 && Xs == 0) O1++;
+        
+        Xs = 0; Os = 0;
         for (int diag = 0; diag < 3; diag++){
-            if(board[diag][2-diag] == 'X') {
-                Xs++;
-            } else if (board[diag][2-diag] == 'O') {
-                Os++;
-            }
+            if(board[diag][2-diag] == 'X') Xs++;
+            else if (board[diag][2-diag] == 'O') Os++;
         }
         if (Xs == 3) {
             win = true;
@@ -157,17 +121,12 @@ public class Board {
         } else if (Os == 3) {
             win = true;
             return Integer.MIN_VALUE;
-        } else if (Xs == 2 && Os == 0) {
-            X2++;
-        } else if (Xs == 1 && Os == 0) {
-            X1++;
-        } else if (Os == 2 && Xs == 0) {
-            O2++;
-        } else if (Os == 1 && Xs == 0) {
-            O1++;
         }
+        else if (Xs == 2 && Os == 0) X2++;
+        else if (Xs == 1 && Os == 0) X1++;
+        else if (Os == 2 && Xs == 0) O2++;
+        else if (Os == 1 && Xs == 0) O1++;
         
         return 3*X2+X1-(3*O2+O1);
     }
-
 }
