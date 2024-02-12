@@ -35,7 +35,7 @@ public class Game {
         
         /* Game loop */
         int turn = 0;
-        while(!board.getIsWon() && turn < 9) { // while no winner
+        while(!board.getIsWon() && turn < 9) {
             if (turn % 2 == 0) player1.runTurn(board);
             else player2.runTurn(board);
             board.evaluate();
@@ -60,12 +60,8 @@ public class Game {
             System.out.print("[1] Human\n[2] AI\n--> ");
             try {
                 playerType = scan.nextInt();
-                if (playerType == 1 || playerType == 2){
-                    invalidInput = false;
-                }
-                else{
-                    System.out.print("Invalid input; enter 1 for Human or 2 for AI: ");
-                }
+                if (playerType == 1 || playerType == 2) invalidInput = false;
+                else System.out.print("Invalid input; enter 1 for Human or 2 for AI: ");
             }
             catch (InputMismatchException e) {
                 System.out.print("Invalid input; enter 1 for Human or 2 for AI: ");
