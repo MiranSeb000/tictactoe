@@ -5,10 +5,12 @@ public class Person extends Player{
     public static final String border = "\n=================================================\n";
 
     public void runTurn(Board board, Scanner scan){
-        int row, col;
+        int row, col, playerNum;
         System.out.println(border);
         board.printBoard();
-        System.out.println("Player 1's turn...");
+        if (board.pieceToMove == 'X') playerNum = 1;
+        else playerNum = 2;
+        System.out.println("Player " + playerNum + "'s turn...");
 
         do {
             System.out.print("Enter row[0 to 2]: ");
@@ -25,7 +27,7 @@ public class Person extends Player{
     public boolean checkMove(Board board, int row, int col) {
         boolean isFree = false;
 
-        if (board.board[col][row] == ' '){
+        if (board.board[row][col] == ' '){
             isFree = true;
         } else {
             System.out.println("\nThat space is already occupied, try again");

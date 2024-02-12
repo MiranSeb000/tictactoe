@@ -20,8 +20,8 @@ public class Game {
 
         // create players
         if (getAIOpp(scan) == 1) {
-            player1 = new Person();
-            player2 = new Person();
+            player1 = new Computer();
+            player2 = new Computer();
         } else {
             if (Math.random()<0.5) {
                 player1 = new Computer();

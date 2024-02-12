@@ -37,7 +37,7 @@ public class Board {
     public void printBoard() {
         for (int row = 0; row < 3; row++){
             for (int col = 0; col < 3; col++){
-                System.out.print(" " + board[col][row] + " ");
+                System.out.print(" " + board[row][col] + " ");
                 if (col < 2) System.out.print("|");
                 else if (row < 2) System.out.print("\n---+---+---\n");
                 else System.out.println('\n');
