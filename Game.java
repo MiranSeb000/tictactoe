@@ -36,8 +36,8 @@ public class Game {
         /* Game loop */
         int turn = 0;
         while(!board.getIsWon() && turn < 9) {
-            if (turn % 2 == 0) player1.runTurn(board);
-            else player2.runTurn(board);
+            if (turn % 2 == 0) player1.runTurn();
+            else player2.runTurn();
             board.evaluate();
             turn++;
         }

@@ -6,5 +6,5 @@
 */
 
 public interface Player {
-    public void runTurn(Board board);
+    public void runTurn();
 }

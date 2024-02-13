@@ -8,11 +8,11 @@
 public class Person implements Player{
 
     /* Conducts the human player's turn */
-    public void runTurn(Board board){
+    public void runTurn(){
         int row, col, playerNum;
         System.out.println(Game.border);
-        board.printBoard();
-        if (board.getPieceToMove() == 'X') playerNum = 1;
+        Game.board.printBoard();
+        if (Game.board.getPieceToMove() == 'X') playerNum = 1;
         else playerNum = 2;
         System.out.println("Player " + playerNum + "'s turn...");
         do {
@@ -20,9 +20,9 @@ public class Person implements Player{
             row = getMoveSpace();
             System.out.print("Enter col [0 to 2]: ");
             col = getMoveSpace();
-        } while (!checkMove(board, row, col));
+        } while (!checkMove(Game.board, row, col));
         Move move = new Move(row, col);
-        board.makeMove(move);
+        Game.board.makeMove(move);
     }
 
     // Checks to see if the given move is valid
