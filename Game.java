@@ -16,7 +16,7 @@ public class Game {
     private Player player1, player2;
     
 
-    /* Runs the game until it's over */
+    /* Runs the game until its over */
     public void run() {
 
         /* Initialize players */
@@ -35,7 +35,7 @@ public class Game {
         
         /* Game loop */
         int turn = 0;
-        while(!board.getIsWon() && turn < 9) {
+        while (!board.getIsWon() && turn < 9) {
             if (turn % 2 == 0) player1.runTurn();
             else player2.runTurn();
             board.evaluate();
@@ -45,7 +45,7 @@ public class Game {
         /* End game */
         System.out.println(border);
         board.printBoard();
-        if (board.getIsWon()) System.out.println("Player " + ((turn-1)%2+1) + " wins!");  
+        if (board.getIsWon()) System.out.println("Player " +((turn-1)%2+1) + " wins!");  
         else System.out.println("It's a draw!");
         System.out.print(border);
     }
@@ -54,7 +54,7 @@ public class Game {
     public int requestPlayerType() {
         int playerType = 0;
         boolean invalidInput = true;
-        while (invalidInput){
+        while (invalidInput) {
             System.out.println(border);
             System.out.println("Select the AIs opponent:");
             System.out.print("[1] Human\n[2] AI\n--> ");
@@ -63,7 +63,7 @@ public class Game {
                 if (playerType == 1 || playerType == 2) invalidInput = false;
                 else System.out.print("Invalid input; enter 1 for Human or 2 for AI: ");
             }
-            catch (InputMismatchException e) {
+            catch(InputMismatchException e) {
                 System.out.print("Invalid input; enter 1 for Human or 2 for AI: ");
                 scan.next();
             }

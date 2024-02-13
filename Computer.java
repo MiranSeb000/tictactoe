@@ -3,7 +3,7 @@ import java.util.*;
 /* ==========================================================
  * Author: Peter Hafner and Sebastian M-G
  * Date: 10 February 2024
- * Purpose: Implementation of Player interface for AI players
+ * Purpose: Implementation of Player interface for  AI players
  * ==========================================================
 */
 
@@ -13,12 +13,12 @@ public class Computer implements Player {
     private int expandedNodes;
 
     /* Implementation of minimax which plays the best move */
-    public int searchAndPlay(int depth, Boolean isInitial){
+    public int searchAndPlay(int depth, Boolean isInitial) {
 
         /* Set node count to 0 if this is the initial call */
         if (isInitial) expandedNodes = 0;
 
-        /* Recursive base case - met is depth is 0 or a winning move has been made in the search */
+        /* Recursive base case - met if depth is 0 or a winning move has been made in the search */
         int eval = Game.board.evaluate();
         if (depth == 0 || Game.board.getIsWon()) {
             expandedNodes++;
@@ -28,7 +28,7 @@ public class Computer implements Player {
         /* Generate list of moves */
         LinkedList<Move> moves = generateMoves();
 
-        /* Account for draws in the node count */
+        /* Account for  draws in the node count */
         if (moves.size() == 0) {
             expandedNodes++;
             return 0;
@@ -41,11 +41,11 @@ public class Computer implements Player {
         if (currentPiece == 'X') bestEval = Integer.MIN_VALUE;
         else bestEval = Integer.MAX_VALUE;
         
-        /* For each move generated, make that move, continue the search, and unmake it */
+        /* for  each move generated, make that move, continue the search, and unmake it */
         for (Move move : moves) {
             Game.board.makeMove(move);
             eval = searchAndPlay(depth - 1, false);
-            if (currentPiece == 'X'){
+            if (currentPiece == 'X') {
                 bestEval = Math.max(eval, bestEval);
                 if (bestEval == eval && isInitial) bestMove = move;
             } 
@@ -66,10 +66,10 @@ public class Computer implements Player {
     }
 
     /* Generate a linked list of legal moves for the given board */
-    private LinkedList<Move> generateMoves () {
-        LinkedList<Move> moves = new LinkedList<Move> ();
-        for (int row = 0; row < 3; row++){
-            for (int col = 0; col < 3; col++){
+    private LinkedList<Move> generateMoves() {
+        LinkedList<Move> moves = new LinkedList<Move>();
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
                 if (Game.board.getSpace(row, col) == ' ') {
                     Move move = new Move(row, col);
                     moves.add(move);

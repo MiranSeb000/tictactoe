@@ -34,8 +34,8 @@ public class Board {
 
     /* Prints the board as it is */
     public void printBoard() {
-        for (int row = 0; row < 3; row++){
-            for (int col = 0; col < 3; col++){
+        for (int row = 0; row < 3; row++) {
+            for (int col = 0; col < 3; col++) {
                 System.out.print(" " + board[row][col] + " ");
                 if (col < 2) System.out.print("|");
                 else if (row < 2) System.out.print("\n---+---+---\n");
@@ -60,7 +60,7 @@ public class Board {
         return 0;
     }
 
-    /* Returns integer value of current position in form 3(X_2)+x_1-(3(O_2)+O_1) */
+    /* Returns integer value of current position in for m 3(X_2)+x_1-(3(O_2)+O_1) */
     public int evaluate() {
 
         /* Set isWon to make sure this evaluation is fresh */
@@ -70,10 +70,10 @@ public class Board {
         int Xs = 0, Os = 0, evaluation = 0, tripletValue;
 
         /* Check rows/cols */
-        for(int i = 0; i <3; i++) {
+        for (int i = 0; i <3; i++) {
             Xs=0; Os=0;
             for (int j = 0; j < 3; j++) {
-                if(board[i][j] == 'X')Xs++;
+                if (board[i][j] == 'X')Xs++;
                 else if (board[i][j] == 'O')Os++;
             }
             tripletValue = checkTriplet(Xs, Os);
@@ -82,7 +82,7 @@ public class Board {
 
             Xs=0; Os=0;
             for (int j = 0; j < 3; j++) {
-                if(board[j][i] == 'X')Xs++;
+                if (board[j][i] == 'X')Xs++;
                 else if (board[j][i] == 'O')Os++;
             }
             tripletValue = checkTriplet(Xs, Os);
@@ -92,8 +92,8 @@ public class Board {
 
         /* Check diagonals */
         Xs=0; Os=0;
-        for (int diag = 0; diag < 3; diag++){
-            if(board[diag][diag] == 'X') Xs++;
+        for (int diag = 0; diag < 3; diag++) {
+            if (board[diag][diag] == 'X') Xs++;
             else if (board[diag][diag] == 'O') Os++;
         }
         tripletValue = checkTriplet(Xs, Os);
@@ -101,8 +101,8 @@ public class Board {
         evaluation += tripletValue;
         
         Xs = 0; Os = 0;
-        for (int diag = 0; diag < 3; diag++){
-            if(board[diag][2-diag] == 'X') Xs++;
+        for (int diag = 0; diag < 3; diag++) {
+            if (board[diag][2-diag] == 'X') Xs++;
             else if (board[diag][2-diag] == 'O') Os++;
         }
         tripletValue = checkTriplet(Xs, Os);
